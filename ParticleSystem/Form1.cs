@@ -15,6 +15,9 @@ namespace ParticleSystem
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
 
+        GravityPoint point1;
+        GravityPoint point2;
+
         public Form1()
         {
             InitializeComponent();
@@ -60,17 +63,19 @@ namespace ParticleSystem
 
             emitters.Add(this.emitter);
 
-            emitter.impactPoints.Add(new GravityPoint
+            point1 = new GravityPoint
             {
                 X = picDisplay.Width / 2 + 100,
                 Y = picDisplay.Height / 2,
-            });
-
-            emitter.impactPoints.Add(new GravityPoint
+            };
+            point2 = new GravityPoint
             {
                 X = picDisplay.Width / 2 - 100,
                 Y = picDisplay.Height / 2,
-            });
+            };
+
+            emitter.impactPoints.Add(point1);
+            emitter.impactPoints.Add(point2);
         }
 
         private void picDisplay_Click(object sender, EventArgs e)
@@ -106,6 +111,16 @@ namespace ParticleSystem
         {
             emitter.Spreading = tbSpreading.Value;
             lblSpreading.Text = $"{tbSpreading.Value}°";
+        }
+
+        private void tbGraviton_Scroll(object sender, EventArgs e)
+        {
+            point1.Power = tbGraviton.Value;
+        }
+
+        private void tbGraviton2_Scroll(object sender, EventArgs e)
+        {
+            point2.Power = tbGraviton2.Value;
         }
     }
 }
