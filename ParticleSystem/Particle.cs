@@ -61,6 +61,7 @@ namespace ParticleSystem
         {
             float k = Math.Min(1f, Life / 100);
 
+
             var color = MixColor(ToColor, FromColor, k);
             var b = new SolidBrush(color);
 
