@@ -14,9 +14,10 @@ namespace ParticleSystem
     {
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
+        Teleport teleport;
 
         GravityPoint point1;
-        GravityPoint point2;
+        AntiGravityPoint point2;
 
         public Form1()
         {
@@ -57,25 +58,35 @@ namespace ParticleSystem
                 ColorFrom = Color.Indigo,
                 ColorTo = Color.FromArgb(0, Color.DeepPink),
                 ParticlesPerTick = 10,
-                X = picDisplay.Width / 2,
+                X = 0,
                 Y = picDisplay.Height / 2,
             };
 
             emitters.Add(this.emitter);
 
-            point1 = new GravityPoint
+            teleport = new Teleport
+            {
+                X = picDisplay.Width / 2,
+                Y = picDisplay.Height / 2,
+                R = 75,
+                X2 = picDisplay.Width / 2,
+                Y2 = picDisplay.Height * 7 / 10,
+            };
+            emitter.impactPoints.Add(teleport);
+
+            /*point1 = new GravityPoint
             {
                 X = picDisplay.Width / 2 + 100,
                 Y = picDisplay.Height / 2,
-            };
-            point2 = new GravityPoint
+            };*/
+            point2 = new AntiGravityPoint
             {
                 X = picDisplay.Width / 2 - 100,
                 Y = picDisplay.Height / 2,
             };
 
-            emitter.impactPoints.Add(point1);
-            emitter.impactPoints.Add(point2);
+           // emitter.impactPoints.Add(point1);
+            //emitter.impactPoints.Add(point2);
         }
 
         private void picDisplay_Click(object sender, EventArgs e)
@@ -127,6 +138,20 @@ namespace ParticleSystem
         private void tbGraviton2_Scroll(object sender, EventArgs e)
         {
             point2.Power = tbGraviton2.Value;
+        }
+
+        private void picDisplay_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                teleport.X = e.X;
+                teleport.Y = e.Y;
+            }
+            if (e.Button == MouseButtons.Right)
+            {
+                teleport.X2 = e.X;
+                teleport.Y2 = e.Y;
+            }
         }
     }
 }

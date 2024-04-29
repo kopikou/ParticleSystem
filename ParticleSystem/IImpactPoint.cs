@@ -69,5 +69,50 @@ namespace ParticleSystem
             particle.SpeedX -= gX * Power / r2;
             particle.SpeedY -= gY * Power / r2;
         }
+        public override void Render(Graphics g)
+        {
+            g.DrawEllipse(
+                   new Pen(Color.White),
+                   X - Power / 2,
+                   Y - Power / 2,
+                   Power,
+                   Power
+               );
+        }
+    }
+
+    public class Teleport : IImpactPoint
+    {
+        public int R, X2, Y2;
+        public override void Render(Graphics g)
+        {
+            //вход
+            g.DrawEllipse(new Pen(Color.Pink, 4), X - R / 2, Y - R / 2, R, R);
+            //выход
+            g.DrawEllipse(new Pen(Color.DeepPink, 4), X2 - R / 2, Y2 - R / 2, R, R);
+            Point[] points =
+             {
+                 new Point((int)(X),(int)(Y)),
+                 new Point((int)(X2),(int)(Y2)),
+             };
+        }
+
+        public override void ImpactParticle(Particle particle)
+        {
+            float gX = X - particle.X;
+            float gY = Y - particle.Y;
+            double r = Math.Sqrt(gX * gX + gY * gY);
+            var points = new[] { new PointF(gX, gY), new PointF(particle.SpeedX, particle.SpeedY) };
+
+            if (r + particle.Radius < R / 2) 
+            {
+                particle.X = X2 - points[0].X;
+                particle.Y = Y2 - points[0].Y;
+                //particle.SpeedX = particle.SpeedX;
+                //particle.SpeedY = particle.SpeedY;
+            }
+
+
+        }
     }
 }
