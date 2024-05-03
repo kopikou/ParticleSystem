@@ -43,11 +43,14 @@
             this.lbTeleportR = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lbTeleportDirection = new System.Windows.Forms.Label();
+            this.tbColorCirclePosition = new System.Windows.Forms.TrackBar();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbTeleportR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbTeleportDirection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbColorCirclePosition)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
@@ -173,11 +176,31 @@
             this.lbTeleportDirection.Size = new System.Drawing.Size(0, 16);
             this.lbTeleportDirection.TabIndex = 12;
             // 
+            // tbColorCirclePosition
+            // 
+            this.tbColorCirclePosition.Location = new System.Drawing.Point(25, 768);
+            this.tbColorCirclePosition.Maximum = 1035;
+            this.tbColorCirclePosition.Name = "tbColorCirclePosition";
+            this.tbColorCirclePosition.Size = new System.Drawing.Size(209, 56);
+            this.tbColorCirclePosition.TabIndex = 13;
+            this.tbColorCirclePosition.Scroll += new System.EventHandler(this.tbColorCirclePosition_Scroll);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(26, 740);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(226, 16);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Перемещение точек смены цвета";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1059, 723);
+            this.ClientSize = new System.Drawing.Size(1059, 836);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.tbColorCirclePosition);
             this.Controls.Add(this.lbTeleportDirection);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lbTeleportR);
@@ -198,6 +221,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbTeleportR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbTeleportDirection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbColorCirclePosition)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,6 +243,8 @@
         private System.Windows.Forms.Label lbTeleportR;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbTeleportDirection;
+        private System.Windows.Forms.TrackBar tbColorCirclePosition;
+        private System.Windows.Forms.Label label5;
     }
 }
 

@@ -15,6 +15,9 @@ namespace ParticleSystem
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
         Teleport teleport;
+        ColorCirlce colorCircle1;
+        ColorCirlce colorCircle2;
+        ColorCirlce colorCircle3;
 
         GravityPoint point1;
         AntiGravityPoint point2;
@@ -74,6 +77,33 @@ namespace ParticleSystem
                 direction = 0,
             };
             emitter.impactPoints.Add(teleport);
+
+            colorCircle1 = new ColorCirlce
+            {
+                X = picDisplay.Width - picDisplay.Width / 3,
+                Y = picDisplay.Height - picDisplay.Height / 5,
+                R = 100,
+                pen = Color.White,
+            };
+            emitter.impactPoints.Add(colorCircle1);
+
+            colorCircle2 = new ColorCirlce
+            {
+                X = picDisplay.Width - picDisplay.Width / 3,
+                Y = picDisplay.Height / 2,
+                R = 100,
+                pen = Color.DimGray,
+            };
+            emitter.impactPoints.Add(colorCircle2);
+
+            colorCircle3 = new ColorCirlce
+            {
+                X = picDisplay.Width - picDisplay.Width / 3,
+                Y = picDisplay.Height / 5,
+                R = 100,
+                pen = Color.DeepSkyBlue,
+            };
+            emitter.impactPoints.Add(colorCircle3);
 
             /*point1 = new GravityPoint
             {
@@ -160,6 +190,13 @@ namespace ParticleSystem
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tbColorCirclePosition_Scroll(object sender, EventArgs e)
+        {
+            colorCircle1.X = tbColorCirclePosition.Value;
+            colorCircle2.X = tbColorCirclePosition.Value;
+            colorCircle3.X = tbColorCirclePosition.Value;
         }
     }
 }

@@ -121,4 +121,33 @@ namespace ParticleSystem
 
         }
     }
+
+    public class ColorCirlce : IImpactPoint
+    {
+        public int R;
+        public Color pen;
+        public override void Render(Graphics g)
+        {
+            g.DrawEllipse(new Pen(pen, 4), X - R / 2, Y - R / 2, R, R);
+        }
+
+        public override void ImpactParticle(Particle particle)
+        {
+            float gX = X - particle.X;
+            float gY = Y - particle.Y;
+            double r = Math.Sqrt(gX * gX + gY * gY);
+
+            var colorParticle = (ParticleColorful)particle;
+
+
+            if (r + particle.Radius < R / 2) 
+            {
+                colorParticle.FromColor = pen;
+                //   particle.ToColor = pen;
+            }
+
+
+        }
+    }
+
 }
