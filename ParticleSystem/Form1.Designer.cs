@@ -37,20 +37,24 @@
             this.lblSpreading = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tbGraviton = new System.Windows.Forms.TrackBar();
-            this.tbGraviton2 = new System.Windows.Forms.TrackBar();
+            this.tbTeleportR = new System.Windows.Forms.TrackBar();
+            this.tbTeleportDirection = new System.Windows.Forms.TrackBar();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbTeleportR = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lbTeleportDirection = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbTeleportR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbTeleportDirection)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
             // 
             this.picDisplay.Location = new System.Drawing.Point(12, 12);
             this.picDisplay.Name = "picDisplay";
-            this.picDisplay.Size = new System.Drawing.Size(971, 582);
+            this.picDisplay.Size = new System.Drawing.Size(1035, 582);
             this.picDisplay.TabIndex = 0;
             this.picDisplay.TabStop = false;
             this.picDisplay.Click += new System.EventHandler(this.picDisplay_Click);
@@ -66,7 +70,8 @@
             // tbDirection
             // 
             this.tbDirection.Location = new System.Drawing.Point(12, 655);
-            this.tbDirection.Maximum = 359;
+            this.tbDirection.Maximum = 90;
+            this.tbDirection.Minimum = -90;
             this.tbDirection.Name = "tbDirection";
             this.tbDirection.Size = new System.Drawing.Size(222, 56);
             this.tbDirection.TabIndex = 1;
@@ -115,31 +120,70 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Разброс";
             // 
-            // tbGraviton
+            // tbTeleportR
             // 
-            this.tbGraviton.Location = new System.Drawing.Point(564, 654);
-            this.tbGraviton.Maximum = 100;
-            this.tbGraviton.Name = "tbGraviton";
-            this.tbGraviton.Size = new System.Drawing.Size(187, 56);
-            this.tbGraviton.TabIndex = 7;
-            this.tbGraviton.Scroll += new System.EventHandler(this.tbGraviton_Scroll);
+            this.tbTeleportR.Location = new System.Drawing.Point(564, 654);
+            this.tbTeleportR.Maximum = 100;
+            this.tbTeleportR.Name = "tbTeleportR";
+            this.tbTeleportR.Size = new System.Drawing.Size(187, 56);
+            this.tbTeleportR.TabIndex = 7;
+            this.tbTeleportR.Scroll += new System.EventHandler(this.tbTeleportR_Scroll);
             // 
-            // tbGraviton2
+            // tbTeleportDirection
             // 
-            this.tbGraviton2.Location = new System.Drawing.Point(769, 654);
-            this.tbGraviton2.Maximum = 100;
-            this.tbGraviton2.Name = "tbGraviton2";
-            this.tbGraviton2.Size = new System.Drawing.Size(194, 56);
-            this.tbGraviton2.TabIndex = 8;
-            this.tbGraviton2.Scroll += new System.EventHandler(this.tbGraviton2_Scroll);
+            this.tbTeleportDirection.Location = new System.Drawing.Point(808, 654);
+            this.tbTeleportDirection.Maximum = 359;
+            this.tbTeleportDirection.Name = "tbTeleportDirection";
+            this.tbTeleportDirection.Size = new System.Drawing.Size(194, 56);
+            this.tbTeleportDirection.TabIndex = 8;
+            this.tbTeleportDirection.Scroll += new System.EventHandler(this.tbTeleportDirection_Scroll);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(571, 633);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(128, 16);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Радиус телепорта";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // lbTeleportR
+            // 
+            this.lbTeleportR.AutoSize = true;
+            this.lbTeleportR.Location = new System.Drawing.Point(771, 654);
+            this.lbTeleportR.Name = "lbTeleportR";
+            this.lbTeleportR.Size = new System.Drawing.Size(0, 16);
+            this.lbTeleportR.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(820, 631);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(189, 16);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Направление из телепорта";
+            // 
+            // lbTeleportDirection
+            // 
+            this.lbTeleportDirection.AutoSize = true;
+            this.lbTeleportDirection.Location = new System.Drawing.Point(1013, 664);
+            this.lbTeleportDirection.Name = "lbTeleportDirection";
+            this.lbTeleportDirection.Size = new System.Drawing.Size(0, 16);
+            this.lbTeleportDirection.TabIndex = 12;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 723);
-            this.Controls.Add(this.tbGraviton2);
-            this.Controls.Add(this.tbGraviton);
+            this.ClientSize = new System.Drawing.Size(1059, 723);
+            this.Controls.Add(this.lbTeleportDirection);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lbTeleportR);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.tbTeleportDirection);
+            this.Controls.Add(this.tbTeleportR);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblSpreading);
@@ -152,8 +196,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbTeleportR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbTeleportDirection)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,8 +213,12 @@
         private System.Windows.Forms.Label lblSpreading;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TrackBar tbGraviton;
-        private System.Windows.Forms.TrackBar tbGraviton2;
+        private System.Windows.Forms.TrackBar tbTeleportR;
+        private System.Windows.Forms.TrackBar tbTeleportDirection;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbTeleportR;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbTeleportDirection;
     }
 }
 

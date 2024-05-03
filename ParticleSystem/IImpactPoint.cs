@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,7 +84,7 @@ namespace ParticleSystem
 
     public class Teleport : IImpactPoint
     {
-        public int R, X2, Y2;
+        public int R, X2, Y2,direction;
         public override void Render(Graphics g)
         {
             //вход
@@ -108,8 +109,13 @@ namespace ParticleSystem
             {
                 particle.X = X2 - points[0].X;
                 particle.Y = Y2 - points[0].Y;
-                //particle.SpeedX = particle.SpeedX;
-                //particle.SpeedY = particle.SpeedY;
+
+                var m = new Matrix();
+                m.Rotate(direction);
+                m.TransformPoints(points);
+
+                particle.SpeedX = points[1].X;
+                particle.SpeedY = points[1].Y;
             }
 
 

@@ -71,6 +71,7 @@ namespace ParticleSystem
                 R = 75,
                 X2 = picDisplay.Width / 2,
                 Y2 = picDisplay.Height * 7 / 10,
+                direction = 0,
             };
             emitter.impactPoints.Add(teleport);
 
@@ -130,14 +131,16 @@ namespace ParticleSystem
             lblSpreading.Text = $"{tbSpreading.Value}°";
         }
 
-        private void tbGraviton_Scroll(object sender, EventArgs e)
-        {
-            point1.Power = tbGraviton.Value;
+        private void tbTeleportR_Scroll(object sender, EventArgs e)
+        {;
+            teleport.R = tbTeleportR.Value;
+            lbTeleportR.Text = $"{tbTeleportR.Value}";
         }
 
-        private void tbGraviton2_Scroll(object sender, EventArgs e)
+        private void tbTeleportDirection_Scroll(object sender, EventArgs e)
         {
-            point2.Power = tbGraviton2.Value;
+            teleport.direction = tbTeleportDirection.Value;
+            lbTeleportDirection.Text = $"{tbTeleportDirection.Value}°";
         }
 
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
@@ -152,6 +155,11 @@ namespace ParticleSystem
                 teleport.X2 = e.X;
                 teleport.Y2 = e.Y;
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
