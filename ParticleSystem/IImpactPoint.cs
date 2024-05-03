@@ -139,15 +139,57 @@ namespace ParticleSystem
 
             var colorParticle = (ParticleColorful)particle;
 
-
             if (r + particle.Radius < R / 2) 
             {
                 colorParticle.FromColor = pen;
-                //   particle.ToColor = pen;
+                colorParticle.ToColor = Color.FromArgb(0, Color.DeepPink);
+            }
+        }
+    }
+
+    public class Radar : IImpactPoint
+    {
+        public int R, cnt = 0;
+        public override void Render(Graphics g)
+        {
+            g.DrawEllipse(new Pen(Color.Aquamarine, 4), X - R / 2, Y - R / 2, R, R);
+            var stringFormat = new StringFormat(); 
+            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.LineAlignment = StringAlignment.Center; 
+
+            g.DrawString($"{cnt}", new Font("Verdana", 20), new SolidBrush(Color.DeepPink), X, Y, stringFormat);
+        }
+        public override void ImpactParticle(Particle particle)
+        {
+            float gX = X - particle.X;
+            float gY = Y - particle.Y;
+            double r = Math.Sqrt(gX * gX + gY * gY);
+            Color a;
+            Color b;
+
+            var colorParticle = (ParticleColorful)particle;
+            if(colorParticle.FromColor != Color.Aquamarine && colorParticle.ToColor != Color.Aquamarine)
+            {
+                a = colorParticle.FromColor;
+                b = colorParticle.ToColor;
+            }
+            else
+            {
+                a = Color.Indigo;
+                b = Color.DeepPink;
+            }
+            colorParticle.FromColor = a;
+            colorParticle.ToColor = b;
+
+            if (r + particle.Radius < R / 2)           
+            { 
+                cnt++;
+
+                colorParticle.FromColor = Color.Aquamarine;
+                colorParticle.ToColor = Color.FromArgb(0, Color.Aquamarine);
             }
 
 
         }
     }
-
 }

@@ -16,8 +16,6 @@ namespace ParticleSystem
         public float SpeedY;
         public static Random rand = new Random();
         public float Life;
-        public Color FromColor;
-        public Color ToColor;
         public Particle()
         {
             var direction = (double)rand.Next(360);

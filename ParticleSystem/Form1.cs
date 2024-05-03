@@ -18,6 +18,7 @@ namespace ParticleSystem
         ColorCirlce colorCircle1;
         ColorCirlce colorCircle2;
         ColorCirlce colorCircle3;
+        Radar radar;
 
         GravityPoint point1;
         AntiGravityPoint point2;
@@ -25,32 +26,9 @@ namespace ParticleSystem
         public Form1()
         {
             InitializeComponent();
+            picDisplay.MouseWheel += picDisplay_MouseWheel;
 
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
-
-            /*emitter = new TopEmitter
-            {
-                Width = picDisplay.Width,
-                GravitationY = 0.25f
-            };
-
-            emitter.impactPoints.Add(new GravityPoint
-            {
-                X = (float)(picDisplay.Width * 0.25),
-                Y = picDisplay.Height / 2
-            });
-
-            emitter.impactPoints.Add(new AntiGravityPoint
-            {
-                X = picDisplay.Width / 2,
-                Y = picDisplay.Height / 2
-            });
-
-            emitter.impactPoints.Add(new GravityPoint
-            {
-                X = (float)(picDisplay.Width * 0.75),
-                Y = picDisplay.Height / 2
-            });*/
 
             this.emitter = new Emitter 
             {
@@ -105,6 +83,14 @@ namespace ParticleSystem
             };
             emitter.impactPoints.Add(colorCircle3);
 
+            radar = new Radar
+            {
+                X = picDisplay.Width + 200,
+                Y = picDisplay.Height + 200,
+                R = 75,
+            };
+            emitter.impactPoints.Add(radar);
+
             /*point1 = new GravityPoint
             {
                 X = picDisplay.Width / 2 + 100,
@@ -127,6 +113,9 @@ namespace ParticleSystem
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            radar.cnt = 0;
+            //emitter.UpdateState();
+
             emitter.UpdateState();
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
@@ -135,18 +124,36 @@ namespace ParticleSystem
             }
 
             picDisplay.Invalidate();
+
+            
         }
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            foreach (var emitter in emitters)
+            /*foreach (var emitter in emitters)
             {
                 emitter.MousePositionX = e.X;
                 emitter.MousePositionY = e.Y;
             }
 
             point2.X = e.X;
-            point2.Y = e.Y;
+            point2.Y = e.Y;*/
+            radar.X = e.X;
+            radar.Y = e.Y;
+        }
+        private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
+                radar.R = radar.R + 5;
+            }
+            else
+            {
+                if (radar.R > 30)
+                {
+                    radar.R = radar.R - 5;
+                }
+            }
         }
 
         private void tbDirection_Scroll(object sender, EventArgs e)
